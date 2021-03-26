@@ -57,3 +57,6 @@ This exercise utilizes the following:
 1. Related data
 1. Filtering data
 1. DB calls: POST, PUT, GET.
+
+### ERD
+![ERD](https://user-images.githubusercontent.com/76709907/112687717-e2916880-8e45-11eb-9ed0-631ce3b9aa59.png)
