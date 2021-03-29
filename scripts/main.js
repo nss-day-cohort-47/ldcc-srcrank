@@ -8,8 +8,7 @@ import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack
-} from "./data/apiManager.js";
+	getSnacks, getSingleSnack, getToppings } from "./data/apiManager.js";
 
 
 
@@ -62,12 +61,16 @@ applicationElement.addEventListener("click", event => {
 // snack listeners
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
-
+//Step 4 - here is where we call getToppings in order to populate the topping information from the .json 
 	if (event.target.id.startsWith("detailscake")) {
 		const snackId = event.target.id.split("__")[1];
 		getSingleSnack(snackId)
-			.then(response => {
-				showDetails(response);
+			.then(snackObj => {
+				getToppings(snackId)
+					.then(snToppings => {
+						showDetails(snackObj, snToppings);
+					})
+						
 			})
 	}
 })
@@ -79,10 +82,11 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-const showDetails = (snackObj) => {
+const showDetails = (snackObj, snToppings) => {
 	const listElement = document.querySelector("#mainContent");
-	listElement.innerHTML = SnackDetails(snackObj);
+	listElement.innerHTML = SnackDetails(snackObj, snToppings);
 }
+
 //end snack listeners
 
 const checkForUser = () => {
@@ -113,6 +117,7 @@ const showSnackList = () => {
 	})
 }
 
+
 const showFooter = () => {
 	applicationElement.innerHTML += Footer();
 }
@@ -123,7 +128,6 @@ const startLDSnacks = () => {
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
-
 }
 
 checkForUser();
