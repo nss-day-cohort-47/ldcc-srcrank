@@ -1,4 +1,6 @@
-export const SnackDetails = (snackObject) => {
+export const SnackDetails = (snackObject, snackToppings) => {
+	//using .map!! then .join to separate by commas!!
+	console.log(snackToppings)
 	return `
 	<div class="col">
 		<div class="card shadow-sm" >
@@ -15,7 +17,10 @@ export const SnackDetails = (snackObject) => {
 						<div class="col col-details">Season: ${snackObject.season.name}</div>
 					</div>
 					<div class="row row-cols-1">
-						<div class="col col-details">${snackObject.toppings}</div>
+					
+						<div class="col col-details">${snackToppings.map(snackTop => {
+							return snackTop.topping.name
+						}).join(", ")}</div>
 					</div>
 				</div>
 			  	
