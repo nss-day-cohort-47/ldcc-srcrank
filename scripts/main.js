@@ -67,8 +67,8 @@ applicationElement.addEventListener("click", event => {
 		getSingleSnack(snackId)
 			.then(snackObj => {
 				getToppings(snackId)
-					.then(snackToppings => {
-						showDetails(snackObj, snackToppings);
+					.then(snToppings => {
+						showDetails(snackObj, snToppings);
 					})
 						
 			})
@@ -82,9 +82,9 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
-const showDetails = (snackObj, snackToppings) => {
+const showDetails = (snackObj, snToppings) => {
 	const listElement = document.querySelector("#mainContent");
-	listElement.innerHTML = SnackDetails(snackObj, snackToppings);
+	listElement.innerHTML = SnackDetails(snackObj, snToppings);
 }
 
 //end snack listeners
