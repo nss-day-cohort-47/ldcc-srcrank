@@ -8,7 +8,7 @@ import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack, getToppings } from "./data/apiManager.js";
+	getSnacks, getSingleSnack, getToppings, getAllToppings } from "./data/apiManager.js";
 
 
 
@@ -106,9 +106,10 @@ const showLoginRegister = () => {
 	applicationElement.innerHTML += `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
 }
 
-const showNavBar = () => {
-	applicationElement.innerHTML += NavBar();
+const showNavBar = (menu) => {
+	applicationElement.innerHTML += NavBar(menu);
 }
+
 
 const showSnackList = () => {
 	getSnacks().then(allSnacks => {
@@ -117,17 +118,19 @@ const showSnackList = () => {
 	})
 }
 
-
 const showFooter = () => {
 	applicationElement.innerHTML += Footer();
 }
 
 const startLDSnacks = () => {
+	getAllToppings().then((parsedToppings) => {
+		//const menu = useSnackTopping()
 	applicationElement.innerHTML = "";
-	showNavBar();
+	showNavBar(parsedToppings);
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
+})
 }
 
 checkForUser();

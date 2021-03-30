@@ -72,7 +72,19 @@ export const getSingleSnack = (snackId) => {
 	.then(response => response.json())
 }
 
+// let toppingArray = [];
+
+// export const useSnackTopping = () => {
+// 	const useToppingArray = [...toppingArray]
+// 	return useToppingArray;
+// }
+
 export const getToppings = (snackId) => {
 	return fetch(`${apiURL}/snackToppings?snackId=${snackId}&_expand=topping`)
+	.then(response => response.json())
+}
+
+export const getAllToppings = () => {
+	return fetch(`${apiURL}/toppings`)
 	.then(response => response.json())
 }

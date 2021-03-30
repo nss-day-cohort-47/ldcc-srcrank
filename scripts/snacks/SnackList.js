@@ -13,3 +13,4 @@ export const SnackList = (allSnacks) => {
 				snackListHTML += `</div></div></div>`
 		return snackListHTML;
 }
+
